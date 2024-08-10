@@ -1480,13 +1480,170 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Basic Statistics: Organizing Data</h1>
 <h4 class="author">Sho Kuroda / 黒田翔</h4>
-<h4 class="date">2024年4月 (Last update: 2024年4月)</h4>
+<h4 class="date">April 2024 (Last update: August 2024)</h4>
 
 </div>
 
 
-<div id="packages-in-r" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Packages in R</h1>
+<div id="introduction" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Introduction</h1>
+<p>We can organize our data without using any special packages, but
+there’s also an option to install and use packages, called “tidyverse”,
+from the web that are specifically designed for data organization.</p>
+<p>This page demonstrate both methods step by step, but in class, we’ll
+only practice the method that doesn’t use any packages.</p>
+<p>データ整備は特別なパッケージを使わずに行うことができるが，データ整備に特化したパッケージ（「tidyverse」という名前）をインターネット上からインストールして使用することもできる．</p>
+<p>このページでは2つの方法を順に示すが，授業ではパッケージを使わない方法のみを演習する．</p>
+</div>
+<div id="organizing-without-packages" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Organizing without
+packages</h1>
+<div id="create-data-frame-object" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> Create “data frame”
+object</h2>
+<p>Let’s copy and paste the chunk below into your R console.</p>
+<p>下のチャンクを皆さんのRのコンソールにコピーアンドペーストしよう．</p>
+<pre class="r"><code>beatles &lt;- data.frame(
+  name = c(&quot;John&quot;, &quot;Paul&quot;, &quot;George&quot;, &quot;Ringo&quot;), 
+  born = c(1940, 1942, 1943, 1940),
+  decease = c(1980, NA, NA, NA), 
+  height = c(179, 180, 178, 170)
+  )
+beatles</code></pre>
+<pre><code>##     name born decease height
+## 1   John 1940    1980    179
+## 2   Paul 1942      NA    180
+## 3 George 1943      NA    178
+## 4  Ringo 1940      NA    170</code></pre>
+</div>
+<div id="extracting-rows-or-columns" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Extracting rows or
+columns</h2>
+<p>We can specify the conditions for the rows (observations) we want to
+keep using brackets <code>[ ]</code>. The brackets are used in the
+format <code>[row selection, column selection]</code>. If no specific
+rows or columns are specified, all elements will be extracted.</p>
+<p>For example, to extract the first row, we would specify the row
+number.</p>
+<p>残す行（observation）の条件をブラケット <code>[ ]</code>
+を使って指定する． ブラケットは
+<code>[抽出する行の指定, 抽出する列の指定]</code> の形式で使う．
+指定がなければすべての要素が抽出される．</p>
+<p>たとえば，1行目を抽出するには次のように行番号を指定する．</p>
+<pre class="r"><code>beatles[1, ]</code></pre>
+<pre><code>##   name born decease height
+## 1 John 1940    1980    179</code></pre>
+<p>To extract the first column, specify the column number like this.</p>
+<p>1列目を抽出するには次のように列番号を指定する．</p>
+<pre class="r"><code>beatles[, 1]</code></pre>
+<pre><code>## [1] &quot;John&quot;   &quot;Paul&quot;   &quot;George&quot; &quot;Ringo&quot;</code></pre>
+<p>We can also extract data by specifying the column names (variable
+names).</p>
+<p>列の名前（変数名）を指定して抽出することもできる．</p>
+<pre class="r"><code>beatles$born</code></pre>
+<pre><code>## [1] 1940 1942 1943 1940</code></pre>
+<pre class="r"><code>beatles[, &quot;born&quot;]  # same as above </code></pre>
+<pre><code>## [1] 1940 1942 1943 1940</code></pre>
+<p>We can also specify which rows to extract based on the attributes of
+a particular column.</p>
+<p>ある列の属性を利用して抽出する行を指定することもできる．</p>
+<pre class="r"><code>beatles[beatles$born == 1940, ]</code></pre>
+<pre><code>##    name born decease height
+## 1  John 1940    1980    179
+## 4 Ringo 1940      NA    170</code></pre>
+<p>The above is implemented by specifying whether to extract or not with
+TRUE/FALSE. Let’s confirm this with the following steps.</p>
+<p>上は，抽出するかどうかを TRUE/FALSE
+で指定することによって実装されている．
+このことを以下のように確認しよう．</p>
+<pre class="r"><code>beatles$born == 1940</code></pre>
+<pre><code>## [1]  TRUE FALSE FALSE  TRUE</code></pre>
+<pre class="r"><code>beatles[c(TRUE, FALSE, FALSE, TRUE), ]</code></pre>
+<pre><code>##    name born decease height
+## 1  John 1940    1980    179
+## 4 Ringo 1940      NA    170</code></pre>
+<p>To assign a dataset with selected elements to a new object, use
+<code>&lt;-</code> (we can also overwrite an existing object with
+it).</p>
+<p>一部の要素を抽出したデータセットを新しいオブジェクトに割り当てるには
+<code>&lt;-</code>
+を用いる（既に存在するオブジェクトに上書きすることも可能）．</p>
+<pre class="r"><code>beatles_ver2 &lt;- beatles[beatles$born == 1940, ]
+beatles_ver2</code></pre>
+<pre><code>##    name born decease height
+## 1  John 1940    1980    179
+## 4 Ringo 1940      NA    170</code></pre>
+<p>We can also specify multiple conditions.</p>
+<p>複数の条件を指定することもできる．</p>
+<pre class="r"><code>beatles[beatles$born == 1940 &amp; beatles$height &lt; 175, ]</code></pre>
+<pre><code>##    name born decease height
+## 4 Ringo 1940      NA    170</code></pre>
+</div>
+<div id="changing-the-value-of-the-elements" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Changing the value of
+the elements</h2>
+<p>George Harrison passed away in 2001.</p>
+<p>ジョージ・ハリスンは2001年に亡くなっている．</p>
+<pre class="r"><code>beatles$decease[beatles$name == &quot;George&quot;] &lt;- 2001
+beatles[beatles$name == &quot;George&quot;, &quot;decease&quot;] &lt;- 2001  # same as above 
+beatles</code></pre>
+<pre><code>##     name born decease height
+## 1   John 1940    1980    179
+## 2   Paul 1942      NA    180
+## 3 George 1943    2001    178
+## 4  Ringo 1940      NA    170</code></pre>
+</div>
+<div id="creating-new-variables" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Creating new
+variables</h2>
+<pre class="r"><code>beatles_ver3 &lt;- beatles
+beatles_ver3$primary_role &lt;- c(&quot;vocal&quot;, &quot;vocal&quot;, &quot;guitar&quot;, &quot;drum&quot;)
+beatles_ver3</code></pre>
+<pre><code>##     name born decease height primary_role
+## 1   John 1940    1980    179        vocal
+## 2   Paul 1942      NA    180        vocal
+## 3 George 1943    2001    178       guitar
+## 4  Ringo 1940      NA    170         drum</code></pre>
+</div>
+<div id="merging-two-datasets" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Merging two
+datasets</h2>
+<p>Let’s merge the following two datasets:</p>
+<ul>
+<li>beatles … name, born, decease, height</li>
+<li>beatles_primary_role … name, primary_role</li>
+</ul>
+<p>We specify the key variable, <code>name</code>, for merging with the
+<code>key</code> argument in the <code>merge</code> function.</p>
+<p>マージには <code>merge</code> 関数を使い，<code>by</code>
+引数でマージするためのキー変数「<code>name</code>」を指定する．</p>
+<pre class="r"><code>beatles_primary_role &lt;- data.frame(
+  name = c(&quot;John&quot;, &quot;Paul&quot;, &quot;George&quot;, &quot;Ringo&quot;), 
+  primary_role = c(&quot;vocal&quot;, &quot;vocal&quot;, &quot;guitar&quot;, &quot;drum&quot;)
+  )
+beatles_primary_role</code></pre>
+<pre><code>##     name primary_role
+## 1   John        vocal
+## 2   Paul        vocal
+## 3 George       guitar
+## 4  Ringo         drum</code></pre>
+<pre class="r"><code>merge(beatles, beatles_primary_role, by = &quot;name&quot;)</code></pre>
+<pre><code>##     name born decease height primary_role
+## 1 George 1943    2001    178       guitar
+## 2   John 1940    1980    179        vocal
+## 3   Paul 1942      NA    180        vocal
+## 4  Ringo 1940      NA    170         drum</code></pre>
+</div>
+</div>
+<div id="organizing-with-packages" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Organizing with
+Packages</h1>
+<div id="packages-in-r" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Packages in R</h2>
+<p>R comes with a wide variety of function collections called
+‘packages.’ If you want to use a package that isn’t installed by default
+when you install R, you’ll need to manually download and install it from
+the internet.</p>
 <p>パッケージには大別すると次の3種類がある：</p>
 <ol style="list-style-type: decimal">
 <li>Rをインストールした時に自動的にインストールされており，Rを起動したときにデフォルトで使えるように設定されているもの（<code>base::c</code>,
@@ -1514,9 +1671,12 @@ CRAN repository options</a>）</li>
 <p>補足：同じ名前の関数が複数のパッケージで使用されている場合があるので，常に
 <code>パッケージ名::関数名</code>
 の形式でパッケージを指定するのを好む人もいる．</p>
-<div id="tidyverse-package" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span>
+</div>
+<div id="tidyverse-package" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span>
 <code>tidyverse</code> package</h2>
+<p>A common approach to organizing and manipulating data is to use
+functions from the <code>tidyverse</code> package.</p>
 <p>データの整理・操作は <code>tidyverse</code>
 というパッケージに含まれる関数を使うのが一般的． <!--
 Load the `tidyverse`, a package (or more precisely, a bundle of packages) for manipulating, extracting, and processing data.
@@ -1529,18 +1689,45 @@ Load the `tidyverse`, a package (or more precisely, a bundle of packages) for ma
 <code>dplyr</code> や <code>ggplot2</code>
 などが同時にインストール／ロードされる</li>
 </ul>
+<div id="installing-the-package" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Installing the
+package</h3>
+<p>Install the package just once after installing R.</p>
 <p>パッケージのインストールは R のインストール後に一度だけ実行する．</p>
 <pre class="r"><code>install.packages(&quot;tidyverse&quot;)  # run for the first time only</code></pre>
-<p>インストール後に R に読み込む．
+</div>
+<div id="loading-the-package" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> Loading the
+package</h3>
+<p>After installation, load the package in R. Unlike installing the
+package, this step needs to be done each time you start R (or
+RStudio).</p>
+<p>インストール後に R にパッケージを読み込む．
 こちらはパッケージのインストールと異なり，R （または
 RStudio）を起動するたびに実行する．</p>
 <pre class="r"><code>library(tidyverse)</code></pre>
+<p>The <code>dplyr</code> (pronounced “dee-ply-er”) package included
+here is used for handling data.</p>
 <p>この中に含まれる <code>dplyr</code>
 はデータのハンドリングを行うパッケージ．</p>
 <!--
 Important function in `dplyr` (pronounced "dee-ply-er") package:
 -->
 <ul>
+<li><code>filter</code> … fetch only the subset (rows) we’re interested
+in</li>
+<li><code>select</code> … select one or multiple columns
+(variables)</li>
+<li><code>mutate</code> … creates new columns (variables)</li>
+<li><code>rename</code> … change columns (variables) name</li>
+<li><code>left_join</code> … join (merge) two datasets</li>
+<li><code>summarise</code> … summarize data</li>
+<li><code>group_by</code> … group the rows
+<ul>
+<li>Note: <code>group_by</code> alone will not give any output; it
+should be followed by <code>summarise</code> (or <code>mutate</code>)
+function.</li>
+</ul></li>
 <li><code>filter</code> … 条件に合致する行を抽出</li>
 <li><code>select</code> … 条件に合致する列（変数）を抽出</li>
 <li><code>mutate</code> … 新しい列（変数）を作成</li>
@@ -1553,24 +1740,15 @@ Important function in `dplyr` (pronounced "dee-ply-er") package:
 <code>summarise</code> 関数と併用される</li>
 </ul></li>
 </ul>
-<!--
-* `filter` ... fetch only the subset (rows) we're interested in
-* `select` ... select one or multiple columns (variables)
-* `mutate` ... creates new columns (variables)
-* `rename` ... change columns (variables) name
-* `left_join` ... join (merge) two datasets
-* `summarise` ... summarize data
-* `group_by` ... group the rows
-   * Note: `group_by` alone will not give any output; it should be followed by `summarise` (or `mutate`) function. 
--->
 </div>
 </div>
-<div id="example-of-the-beatles-data-frame" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Example of The Beatles
-data frame</h1>
-<div id="create-tibble-object" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Create “tibble”
-object</h2>
+<div id="example-of-the-beatles-data-frame-create-tibble-object" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Example of The
+Beatles data frame: Create “tibble” object</h2>
+<p>We can create a slightly more user-friendly data frame using the
+<code>tibble::tibble</code> function, compared to the
+<code>data.frame</code> objects made with <code>data.frame</code>
+function.</p>
 <p><code>data.frame</code>
 で作成したデータフレームのオブジェクトよりも少し扱いやすいデータフレーム型オブジェクトを
 <code>tibble::tibble</code> 関数で作成できる．</p>
@@ -1589,9 +1767,10 @@ beatles</code></pre>
 ## 3 George  1943      NA    178
 ## 4 Ringo   1940      NA    170</code></pre>
 </div>
-<div id="filter" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span>
+<div id="filter" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span>
 <code>filter</code></h2>
+<p>Specify the conditions for the rows (observations) to keep.</p>
 <p>残す行（observation）の条件を指定する．</p>
 <pre class="r"><code>beatles %&gt;% filter(born &gt;= 1941)</code></pre>
 <pre><code>## # A tibble: 2 × 4
@@ -1599,9 +1778,11 @@ beatles</code></pre>
 ##   &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 Paul    1942      NA    180
 ## 2 George  1943      NA    178</code></pre>
+<p>To assign the dataset after applying the filter, use
+<code>&lt;-</code> to create a new object.</p>
 <p><code>filter</code>
 を適用した後のデータセットを新しいオブジェクトに割り当てるには
-<code>&lt;-</code> を用いる（上書きも可；以下同様）．</p>
+<code>&lt;-</code> を用いる（上書きも可）．</p>
 <pre class="r"><code>beatles_ver2 &lt;- beatles %&gt;% filter(born &gt;= 1941)
 beatles_ver2</code></pre>
 <pre><code>## # A tibble: 2 × 4
@@ -1609,6 +1790,7 @@ beatles_ver2</code></pre>
 ##   &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 Paul    1942      NA    180
 ## 2 George  1943      NA    178</code></pre>
+<p>We can also specify multiple conditions.</p>
 <p>複数の条件を指定することもできる．</p>
 <pre class="r"><code>beatles %&gt;% filter(born &gt;= 1941 &amp; height &lt; 180)</code></pre>
 <pre><code>## # A tibble: 1 × 4
@@ -1616,9 +1798,10 @@ beatles_ver2</code></pre>
 ##   &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;
 ## 1 George  1943      NA    178</code></pre>
 </div>
-<div id="select" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span>
+<div id="select" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span>
 <code>select</code></h2>
+<p>Specify the names of the columns (variables) we want to keep.</p>
 <p>残す列（変数）の名前を指定する．</p>
 <pre class="r"><code>beatles %&gt;% select(name)</code></pre>
 <pre><code>## # A tibble: 4 × 1
@@ -1629,9 +1812,10 @@ beatles_ver2</code></pre>
 ## 3 George
 ## 4 Ringo</code></pre>
 </div>
-<div id="mutate" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span>
+<div id="mutate" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span>
 <code>mutate</code></h2>
+<p>Create a new column (variable).</p>
 <p>新しく列（変数）を作成する．</p>
 <pre class="r"><code>beatles %&gt;% mutate(primary_role = c(&quot;vocal&quot;, &quot;vocal&quot;, &quot;guitar&quot;, &quot;drum&quot;))</code></pre>
 <pre><code>## # A tibble: 4 × 5
@@ -1642,9 +1826,10 @@ beatles_ver2</code></pre>
 ## 3 George  1943      NA    178 guitar      
 ## 4 Ringo   1940      NA    170 drum</code></pre>
 </div>
-<div id="rename" class="section level2" number="2.5">
-<h2><span class="header-section-number">2.5</span>
+<div id="rename" class="section level2" number="3.7">
+<h2><span class="header-section-number">3.7</span>
 <code>rename</code></h2>
+<p>Rename the columns (variables).</p>
 <p>列（変数）の名前を変える．</p>
 <pre class="r"><code>beatles %&gt;% rename(birth_year = born)</code></pre>
 <pre><code>## # A tibble: 4 × 4
@@ -1655,9 +1840,10 @@ beatles_ver2</code></pre>
 ## 3 George       1943      NA    178
 ## 4 Ringo        1940      NA    170</code></pre>
 </div>
-<div id="left_join" class="section level2" number="2.6">
-<h2><span class="header-section-number">2.6</span>
+<div id="left_join" class="section level2" number="3.8">
+<h2><span class="header-section-number">3.8</span>
 <code>left_join</code></h2>
+<p>Merge with another dataset.</p>
 <p>別のデータセットと統合する．</p>
 <pre class="r"><code>beatles_primary_role &lt;- tibble::tibble(name = c(&quot;John&quot;, &quot;Paul&quot;, &quot;George&quot;, &quot;Ringo&quot;), 
                                        primary_role = c(&quot;vocal&quot;, &quot;vocal&quot;, &quot;guitar&quot;, &quot;drum&quot;))
@@ -1678,9 +1864,10 @@ beatles_primary_role</code></pre>
 ## 3 George  1943      NA    178 guitar      
 ## 4 Ringo   1940      NA    170 drum</code></pre>
 </div>
-<div id="summarise" class="section level2" number="2.7">
-<h2><span class="header-section-number">2.7</span>
+<div id="summarise" class="section level2" number="3.9">
+<h2><span class="header-section-number">3.9</span>
 <code>summarise</code></h2>
+<p>Summarize the data.</p>
 <p>データを要約する．</p>
 <pre class="r"><code>beatles %&gt;% summarise(mean_height = mean(height), 
                       std_dev_height = sd(height),
@@ -1690,9 +1877,11 @@ beatles_primary_role</code></pre>
 ##         &lt;dbl&gt;          &lt;dbl&gt;       &lt;int&gt;
 ## 1        177.           4.57           4</code></pre>
 </div>
-<div id="group_by" class="section level2" number="2.8">
-<h2><span class="header-section-number">2.8</span>
+<div id="group_by" class="section level2" number="3.10">
+<h2><span class="header-section-number">3.10</span>
 <code>group_by</code></h2>
+<p>We can use the <code>summarise</code> function to calculate summary
+statistics or perform other statistical operations for each group.</p>
 <p><code>summarise</code>
 関数と組み合わせて使うことで，グループごとの要約統計量を計算したり何らかの統計処理を行うことができる．</p>
 <pre class="r"><code>beatles %&gt;% 

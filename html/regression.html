@@ -1480,7 +1480,7 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Basic Statistics: Regression Analysis</h1>
 <h4 class="author">Sho Kuroda / 黒田翔</h4>
-<h4 class="date">2024年4月 (Last update: 2024年4月)</h4>
+<h4 class="date">April 2024 (Last update: August 2024)</h4>
 
 </div>
 
@@ -1488,10 +1488,17 @@ border-radius: 0px;
 <div id="simple-regression-analysis-単回帰分析" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Simple regression
 analysis / 単回帰分析</h1>
+<p>We’ll estimate the following regression model (simple linear
+regression) with a single explanatory variable using the
+<code>swiss</code> dataset.</p>
 <p><code>swiss</code>
 データを使って，1つの説明変数をもつ次のような回帰モデル（単回帰モデル）を推定する．</p>
 <p><span class="math display">\[ Fertility = \alpha + \beta Exam + u
 \]</span></p>
+<div id="estimation-and-interpretation" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Estimation and
+interpretation</h2>
+<p>Estimate using the <code>lm</code> (linear model) function.</p>
 <p><code>lm</code> (linear model) 関数で推定する．</p>
 <pre class="r"><code># str(swiss)  # built-in dataset
 lm(formula = Fertility ~ Examination, data = swiss)</code></pre>
@@ -1502,6 +1509,28 @@ lm(formula = Fertility ~ Examination, data = swiss)</code></pre>
 ## Coefficients:
 ## (Intercept)  Examination  
 ##      86.819       -1.011</code></pre>
+<p>From the results above, it can be interpreted as follows: When the
+value of the <code>Examination</code> variable increases by one unit,
+the <code>Fertility</code> variable tends to be 1.011 units lower on
+average.</p>
+<p>上の結果から次のように解釈することができる：「<code>Examination</code>
+変数が1単位大きい値を取るとき，<code>Fertility</code> 変数は平均的に
+1.011 単位小さな値を取る」</p>
+<p>It <em>cannot</em> be interpreted as: A one-unit increase in
+<code>Examination</code> <em>reduces</em> <code>Fertility</code> by
+1.011 units.</p>
+<p>This is because the phrase ‘reduces’ implies a causal relationship,
+whereas the analysis above is merely measuring correlation, not
+causation.</p>
+<p>次のように解釈することはできない：「<code>Examination</code>
+の1単位の増加は <code>Fertility</code> を 1.011 単位減少させる」</p>
+<p>なぜならば，「減少させる」という表現は通常因果関係を意味するが，上の分析では因果関係ではなく相関関係を測定しているにすぎないからである．</p>
+</div>
+<div id="summary-function" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> <code>summary</code>
+function</h2>
+<p><code>summary</code> function display the R-squared and other
+statistics.</p>
 <p><code>lm</code> 関数で計算した回帰オブジェクトを <code>summary</code>
 関数に渡すと決定係数なども表示される．</p>
 <pre class="r"><code>summary(lm(formula = Fertility ~ Examination, data = swiss))</code></pre>
@@ -1524,9 +1553,12 @@ lm(formula = Fertility ~ Examination, data = swiss)</code></pre>
 ## Multiple R-squared:  0.4172, Adjusted R-squared:  0.4042 
 ## F-statistic: 32.21 on 1 and 45 DF,  p-value: 9.45e-07</code></pre>
 </div>
+</div>
 <div id="multiple-regression-analysis-重回帰分析" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Multiple regression
 analysis / 重回帰分析</h1>
+<p>Let’s consider the following regression model (multiple regression
+model) with two explanatory variables.</p>
 <p>2つの説明変数をもつ次のような回帰モデル（重回帰モデル）を考える．</p>
 <p><span class="math display">\[ Fertility = \alpha + \beta_1 Exam +
 \beta_2 Educ + u \]</span></p>
@@ -1550,15 +1582,27 @@ analysis / 重回帰分析</h1>
 ## Residual standard error: 8.982 on 44 degrees of freedom
 ## Multiple R-squared:  0.5055, Adjusted R-squared:  0.483 
 ## F-statistic: 22.49 on 2 and 44 DF,  p-value: 1.87e-07</code></pre>
+<p>From the results above, it can be interpreted as follows: Given that
+<code>Education</code> is held at a certain level, when
+<code>Examination</code> increases by one unit, <code>Fertility</code>
+tends to be 0.5572 units lower on average.</p>
+<p>上の結果から次のように解釈できる：<code>Education</code>
+を一定水準に固定したもとで <code>Examination</code>
+が1単位大きい値を取るとき，<code>Fertility</code> は平均的に 0.5572
+小さな値を取る傾向にある．</p>
 </div>
-<div id="adcanced-応用" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Adcanced / 応用</h1>
+<div id="advanced-応用" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Advanced / 応用</h1>
 <div id="adding-quardatic-or-interaction-terms-二次交差項" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Adding quardatic or
 interaction terms / 二次・交差項</h2>
+<p>When specifying a regression model, we can use the <code>I</code>
+function to represent squares and interaction terms.</p>
+<p>The notation <code>var1 : var2</code> represents var1 × var2, while
+<code>var1 * var2</code> represents var1 + var2 + (var1 × var2).</p>
 <p>回帰モデルを指定する際に <code>I</code>
-関数を使って二乗や交差項を表現する．
-「<code>var1 : var2</code>」は「<code>var1 × var2</code>」を表し，「<code>var1 * var2</code>」は「<code>var1 + var2 + (var1 × var2)</code>」を表す．</p>
+関数を使って二乗や交差項を表現する．</p>
+<p>「<code>var1 : var2</code>」は「<code>var1 × var2</code>」を表し，「<code>var1 * var2</code>」は「<code>var1 + var2 + (var1 × var2)</code>」を表す．</p>
 <p><span class="math display">\[ Fertility = \alpha + \beta_1 Exam +
 \beta_2 Educ^2 + u \]</span></p>
 <pre class="r"><code>lm(Fertility ~ Examination + I(Education^2), data = swiss)</code></pre>
@@ -1584,6 +1628,9 @@ interaction terms / 二次・交差項</h2>
 ##             87.178104              -0.625731              -0.807552  
 ## Examination:Education  
 ##              0.009201</code></pre>
+<p>We can use <code>log</code> without <code>I</code> when taking the
+logarithm of either the explanatory variables or the dependent
+variable.</p>
 <p>説明変数や被説明変数に対数を取る場合は <code>I</code> なしで
 <code>log</code> を使ってよい．</p>
 <p><span class="math display">\[ \log(Fertility) = \alpha + \beta_1 Exam
@@ -1598,17 +1645,31 @@ interaction terms / 二次・交差項</h2>
 ##     4.49251     -0.01574</code></pre>
 </div>
 <div id="dummy-variables-ダミー変数" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> Dummy variables
+<h2><span class="header-section-number">3.2</span> Dummy variables /
 ダミー変数</h2>
-<p><code>Examination</code> 変数が平均よりも大きい場合に 1
+<p>Let’s define a dummy variable, <code>exam_dummy</code>, that takes
+the value 1 when the <code>Examination</code> variable is greater than
+the average (approximately 16).</p>
+<p>Use the
+<code>ifelse(logical expression, value if TRUE, value if FALSE)</code>
+function to create a variable that returns 1 if the logical expression
+is <code>TRUE</code>.</p>
+<p><code>Examination</code> 変数が平均（≒ 16）よりも大きい場合に 1
 をとるダミー変数を定義してみる．</p>
-<ul>
-<li><code>ifelse(論理演算, TRUE の場合, FALSE の場合)</code>
-を利用し，論理演算部分が TRUE なら 1 を返すように設定</li>
-</ul>
-<pre class="r"><code>swiss$exam_dummy &lt;- ifelse(swiss$Examination &gt; mean(swiss$Examination), 1, 0)</code></pre>
+<p><code>ifelse(論理演算, TRUE の場合, FALSE の場合)</code>
+を利用し，論理演算部分が <code>TRUE</code> なら 1
+を返すように変数を作成する．</p>
+<pre class="r"><code>swiss$exam_dummy &lt;- ifelse(swiss$Examination &gt; 16, 1, 0)
+head(swiss[, c(&quot;Examination&quot;, &quot;exam_dummy&quot;)])</code></pre>
+<pre><code>##              Examination exam_dummy
+## Courtelary            15          0
+## Delemont               6          0
+## Franches-Mnt           5          0
+## Moutier               12          0
+## Neuveville            17          1
+## Porrentruy             9          0</code></pre>
 <p><span class="math display">\[ Fertility = \alpha + \beta_1 1(Exam
-&gt; \bar{Exam}) + u \]</span></p>
+&gt; 16) + u \]</span></p>
 <pre class="r"><code>summary(lm(Fertility ~ exam_dummy, data = swiss))</code></pre>
 <pre><code>## 
 ## Call:
@@ -1628,6 +1689,13 @@ interaction terms / 二次・交差項</h2>
 ## Residual standard error: 10.5 on 45 degrees of freedom
 ## Multiple R-squared:  0.3095, Adjusted R-squared:  0.2941 
 ## F-statistic: 20.17 on 1 and 45 DF,  p-value: 4.907e-05</code></pre>
+<p>It can be observed that in regions where <code>Examination</code>
+exceeds 16, <code>Fertility</code> tends to be, on average, 13.904 units
+lower compared to regions where Examination does not exceed 16.</p>
+<p><code>Examination</code>
+が16を超えている地域では超えていない地域と比較して
+<code>Fertility</code> が平均的に 13.904
+単位低い値を取る傾向にあることが分かる．</p>
 </div>
 </div>
 

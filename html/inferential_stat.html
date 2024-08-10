@@ -1481,7 +1481,7 @@ border-radius: 0px;
 <h1 class="title toc-ignore">Basic Statistics: Basics of Inferential
 Statistics</h1>
 <h4 class="author">Sho Kuroda / 黒田翔</h4>
-<h4 class="date">2024年4月 (Last update: 2024年4月)</h4>
+<h4 class="date">April 2024 (Last update: August 2024)</h4>
 
 </div>
 
@@ -1489,26 +1489,51 @@ Statistics</h1>
 <div id="probability-確率" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Probability / 確率</h1>
 <div id="z-score" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Z score</h2>
+<h2><span class="header-section-number">1.1</span> z score</h2>
+<p>The area of the standard normal distribution (PDF: <span class="math inline">\(\phi\)</span>) to the left of <span class="math inline">\(z = 1.96\)</span> is the probability of <span class="math inline">\(\Pr(Z \le 1.96)\)</span>.</p>
+<p><span class="math display">\[ \Pr (Z \le 1.96) = \int_{-
+\infty}^{1.96} \phi (z) dz \approx 0.975 \]</span></p>
+<p><img src="data:image/png;base64,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" width="672" />
+<!--
+plot(dnorm, xlim = c(-3, 3)); abline(v = 1.96)
+--></p>
+<p>The function name <code>pnorm</code> comes from p (probability) +
+norm (normal distribution). <code>pnorm</code> is a function that
+returns the probability corresponding to a given z-score.</p>
 <p>標準正規分布の <span class="math inline">\(z = 1.96\)</span>
 より左側の面積は確率 <span class="math inline">\(Pr(Z \le 1.96)\)</span>
 である．</p>
 <p><code>pnorm</code> は与えられた <span class="math inline">\(z\)</span>
 スコアに対応する確率を返す関数で，関数名は p (probability) + norm
 (normal distribution) から来ている．</p>
-<!--
-The area of the standard normal distribution to the left of $z = 1.96$ is the probability of $\Pr(Z \le 1.96)$. 
-The function name `pnorm` comes from p (probability) + norm (normal distribution). `pnorm` is a function that returns the probability corresponding to a given z-score.
--->
 <pre class="r"><code>pnorm(q = 1.96, mean = 0, sd = 1)</code></pre>
 <pre><code>## [1] 0.9750021</code></pre>
-<p>その逆に，<code>qnorm</code> は与えられた確率に対応する <span class="math inline">\(z\)</span> スコアを返す関数． <!--
-Conversely, `qnorm` is a function that returns the z-score corresponding to a given probability. 
---></p>
+<p>Conversely, <code>qnorm</code> is a function that returns the z-score
+corresponding to a given probability.</p>
+<p>その逆に，<code>qnorm</code> は与えられた確率に対応する <span class="math inline">\(z\)</span> スコアを返す関数．</p>
 <pre class="r"><code>qnorm(p = 0.975, mean = 0, sd = 1)</code></pre>
 <pre><code>## [1] 1.959964</code></pre>
 <pre class="r"><code>qnorm(p = 0.975)  # for N(0,1), the mean and sd arguments may be omitted </code></pre>
 <pre><code>## [1] 1.959964</code></pre>
+</div>
+<div id="t-score" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> t score</h2>
+<p>Just like with the z-score, we can find the corresponding <span class="math inline">\(t\)</span> value for a given probability.</p>
+<p><span class="math display">\[ \Pr(T &lt; t) = 0.975 \]</span></p>
+<p>Since the <span class="math inline">\(t\)</span> distribution depends
+on the degrees of freedom, you need to specify the df (degrees of
+freedom) parameter.</p>
+<p>z score の場合と同様に，所与の確率に対応する <span class="math inline">\(t\)</span> 値を求めることができる．</p>
+<p><span class="math inline">\(t\)</span>
+分布は自由度に依存するので，<code>df</code> (degree of freedom)
+引数を指定しなければならない．</p>
+<pre class="r"><code>qt(p = 0.975, df = 10)</code></pre>
+<pre><code>## [1] 2.228139</code></pre>
+<p>As the degrees of freedom increase, the values become almost
+identical to those of the standard normal distribution.</p>
+<p>自由度が大きくなると標準正規分布の場合とほとんど同じ値になる．</p>
+<pre class="r"><code>qt(p = 0.975, df = 1000)</code></pre>
+<pre><code>## [1] 1.962339</code></pre>
 </div>
 </div>
 <div id="confidence-interval-信頼区間" class="section level1" number="2">
@@ -1518,16 +1543,14 @@ Conversely, `qnorm` is a function that returns the z-score corresponding to a gi
 <h2><span class="header-section-number">2.1</span> Population mean with
 unknown <span class="math inline">\(\sigma\)</span> /
 母集団の標準偏差が未知の場合の母平均</h2>
-<p>標本平均が100，「標本」標準偏差が2，サンプルサイズが100の場合，信頼水準95%の信頼区間は次のようになる．
-<!--
-For a sample mean of 100, **sample** standard deviation of 2, and sample size of 100, the confidence interval is calculated as follows: 
---></p>
+<p>For a sample mean of 100, <strong>sample</strong> standard deviation
+of 2, and sample size of 100, the confidence interval is calculated as
+follows:</p>
 <p><span class="math display">\[ \bar{x} \pm t \frac{s}{\sqrt{n}} = 100
 \pm 1.98 \frac{2}{\sqrt{100}} = 100 \pm 0.396, \quad \mbox{95% CI}:
 [99.60, 100.40] \]</span></p>
-<!--
-Note that we use t-value, not z-value. 
--->
+<p>Note that we use t-value, not z-value.</p>
+<p>標本平均が100，「標本」標準偏差が2，サンプルサイズが100の場合，信頼水準95%の信頼区間は上のようになる．</p>
 <pre class="r"><code>qt(p = 0.025, df = 100-1)  # P(T&lt;t) = 0.025</code></pre>
 <pre><code>## [1] -1.984217</code></pre>
 <pre class="r"><code>100 + qt(p = 0.025, df = 100-1) * 2 / sqrt(100)  # lower limit</code></pre>
@@ -1537,13 +1560,9 @@ Note that we use t-value, not z-value.
 <div id="using-t.test-function" class="section level3" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> Using
 <code>t.test</code> function</h3>
-<p><span class="math inline">\(t\)</span>-検定を行う<code>t.test</code>という関数は信頼区間をついでに出力してくれる．
-<!--
-The function `t.test`, which performs a $t$-test (to be covered in the next class), also outputs a confidence interval. 
---></p>
-<p>信頼水準 (<span class="math inline">\(1 - \alpha\)</span>)
-はデフォルトで95%に設定されている． <code>conf.level</code>
-引数を指定すればそれ以外の信頼水準に変更できる．</p>
+<p>The function <code>t.test</code>, which performs a <span class="math inline">\(t\)</span>-test, also outputs a confidence
+interval.</p>
+<p><span class="math inline">\(t\)</span>-検定を行う<code>t.test</code>という関数は信頼区間をついでに出力してくれる．</p>
 <pre class="r"><code>wage &lt;- c(1000, 1200, 1300, 1200, 1150, 1000, 1450, 1500, 1150, 1350)
 t.test(wage)  # default: 95% CI</code></pre>
 <pre><code>## 
@@ -1557,6 +1576,13 @@ t.test(wage)  # default: 95% CI</code></pre>
 ## sample estimates:
 ## mean of x 
 ##      1230</code></pre>
+<p>The confidence level (<span class="math inline">\(1 -
+\alpha\)</span>) is set to 95% by default. We can change it to a
+different confidence level by specifying the <code>conf.level</code>
+argument.</p>
+<p>信頼水準 (<span class="math inline">\(1 - \alpha\)</span>)
+はデフォルトで95%に設定されている． <code>conf.level</code>
+引数を指定すればそれ以外の信頼水準に変更できる．</p>
 <pre class="r"><code>t.test(wage, conf.level = 0.99)  # 99% CI</code></pre>
 <pre><code>## 
 ##  One Sample t-test
@@ -1578,7 +1604,18 @@ testing / 統計的仮説検定</h1>
 <div id="one-sample-t-test-for-population-mean-1標本の母平均の-t-検定" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> One-sample <span class="math inline">\(t\)</span> test for population mean /
 1標本の母平均の <span class="math inline">\(t\)</span> 検定</h2>
-<p><code>t.test(ベクトル, mu = 帰無仮説の仮説値)</code> と指定．</p>
+<p>Null and alternative hypothesis:</p>
+<p><span class="math display">\[ H_0 : \mu = \mu_0, \quad H_1 : \mu \ne
+\mu_0 \]</span></p>
+<p>where <span class="math inline">\(\mu_0\)</span> is hypothesized
+value under the null hypothesis.</p>
+<p>Test statistic <span class="math inline">\(t\)</span>:</p>
+<p><span class="math display">\[ t = \frac{\bar{x} - \mu_0}{s/\sqrt{n}}
+. \]</span></p>
+<p>Specify it as
+<code>t.test(vector of sample data, mu = mu_0)</code>.</p>
+<p><code>t.test(ベクトル型の標本データ, mu = 帰無仮説の仮説値)</code>
+と指定．</p>
 <pre class="r"><code>wage &lt;- c(1000, 1200, 1300, 1200, 1150, 1000, 1450, 1500, 1150, 1350)
 t.test(wage, mu = 1100)  # default: two sided ... H1 is [mu != 1100]</code></pre>
 <pre><code>## 
@@ -1596,13 +1633,20 @@ t.test(wage, mu = 1100)  # default: two sided ... H1 is [mu != 1100]</code></pre
 <div id="two-sample-t-test-for-population-mean-2標本の母平均の-t-検定" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Two-sample <span class="math inline">\(t\)</span> test for population mean /
 2標本の母平均の <span class="math inline">\(t\)</span> 検定</h2>
-<div id="independent-t-test" class="section level3" number="3.2.1">
-<h3><span class="header-section-number">3.2.1</span> Independent <span class="math inline">\(t\)</span> test</h3>
-<p><code>t.test(x = 1つ目のベクトル, y = 2つ目のベクトル)</code>
+<div id="independent-t-test-welchs-t-test" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> Independent <span class="math inline">\(t\)</span> test (Welch’s <span class="math inline">\(t\)</span> test)</h3>
+<p>Null and alternative hypothesis:</p>
+<p><span class="math display">\[ H_0 : \mu_1 = \mu_2, \quad H_1 : \mu_1
+\ne \mu_2 \]</span></p>
+<p>Test statistic <span class="math inline">\(t\)</span>:</p>
+<p><span class="math display">\[ t = \frac{\bar{x}_1 -
+\bar{x}_2}{\sqrt{s_1^2 / n_1 + s_2^2 / n_2}} . \]</span></p>
+<p>Specify it as <code>t.test(x = sample 1, y = sample 2)</code>.</p>
+<p><code>t.test(x = 1つ目の標本（ベクトル）, y = 2つ目の標本（ベクトル）)</code>
 のように指定する．</p>
 <pre class="r"><code>wage_jp &lt;- c(1000, 1200, 1300, 1200, 1150, 1000, 1450, 1500, 1150, 1350)  # Japan
 wage_us &lt;- c(900, 1300, 1200, 800, 1600, 850, 1000, 950)  # US
-t.test(wage_jp, wage_us)  # default: Welch&#39;s t test (assuming unequal variance)</code></pre>
+t.test(wage_jp, wage_us)  # default: Welch&#39;s test (assuming unequal variance)</code></pre>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -1618,6 +1662,8 @@ t.test(wage_jp, wage_us)  # default: Welch&#39;s t test (assuming unequal varian
 <div id="paired-dependent-t-test" class="section level3" number="3.2.2">
 <h3><span class="header-section-number">3.2.2</span> Paired (dependent)
 <span class="math inline">\(t\)</span> test</h3>
+<p>A paired t-test is calculated by adding the argument
+<code>paired = TRUE</code> in the <code>t.test</code> function.</p>
 <p>対応のある t 検定は <code>t.test</code> の引数で
 <code>paired = TRUE</code> 引数を追加して計算する．</p>
 <pre class="r"><code>wage_w &lt;- c(1000, 1200, 1300, 1200, 1150, 1000, 1450, 1500, 1150, 1350)  # wife
@@ -1634,6 +1680,9 @@ t.test(wage_w, wage_h, paired = TRUE)</code></pre>
 ## sample estimates:
 ## mean difference 
 ##             110</code></pre>
+<p>It is equivalent to a one-sample test on the differences between the
+elements.</p>
+<p>「要素ごとの差」に対する一標本の検定と同値になっている．</p>
 <pre class="r"><code>t.test(wage_w - wage_h)  # same as an ordinary &quot;one-sample t test&quot;</code></pre>
 <pre><code>## 
 ##  One Sample t-test
@@ -1646,7 +1695,6 @@ t.test(wage_w, wage_h, paired = TRUE)</code></pre>
 ## sample estimates:
 ## mean of x 
 ##       110</code></pre>
-<p>上記の通り「要素ごとの差」という一標本の検定になっている．</p>
 </div>
 </div>
 </div>

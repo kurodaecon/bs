@@ -1480,24 +1480,51 @@ border-radius: 0px;
 
 <h1 class="title toc-ignore">Basic Statistics: Basic Operation of R</h1>
 <h4 class="author">Sho Kuroda / 黒田翔</h4>
-<h4 class="date">2024年4月 (Last update: 2024年4月)</h4>
+<h4 class="date">April 2024 (Last update: August 2024)</h4>
 
 </div>
 
 
+<div id="reference" class="section level1" number="1">
+<h1><span class="header-section-number">1</span> Reference</h1>
+<p>See <a href="https://intro2r.com/">An Introduction to R</a> for
+details!</p>
 <p>詳細は <a href="https://intro2r.com/">An Introduction to R</a>
 を参照．</p>
-<div id="basic-operating-instructions-基本的な操作" class="section level1" number="1">
-<h1><span class="header-section-number">1</span> Basic operating
+</div>
+<div id="basic-operating-instructions-基本的な操作" class="section level1" number="2">
+<h1><span class="header-section-number">2</span> Basic operating
 instructions / 基本的な操作</h1>
-<p>　↓ Rコード（Rスクリプト or
+<p>　↓ An example of R code (R script or R program, with sections
+highlighted in light gray).</p>
+<p>　 Rコード（Rスクリプト or
 Rプログラム，薄い灰色で塗りつぶされた箇所）の例</p>
 <pre class="r"><code>1 + 1</code></pre>
 <pre><code>## [1] 2</code></pre>
-<p>　↑ Rコードを実行した結果</p>
-<p>このページのRコードをどのように実行すればよいか？</p>
+<p>　↑ The result of running the R code.</p>
+<p>　 Rコードを実行した結果</p>
+<div id="how-do-we-run-the-r-code-on-this-page-実行の方法" class="section level2" number="2.1">
+<h2><span class="header-section-number">2.1</span> How do we run the R
+code on this page? / 実行の方法</h2>
+<p>en:</p>
 <ul>
-<li>Rを利用：<a href="https://cran.ism.ac.jp/">Rをダウンロード</a>
+<li>Using R: <a href="https://ftp.yz.yamagata-u.ac.jp/pub/cran/">Download R</a>
+<ul>
+<li>Copy and paste directly into the console and press “Enter” (or
+“Return” on a Mac).</li>
+<li>Copy and paste into a new script via “File” → “New Script”, select
+the part to run, then press “Ctrl” + “R”.</li>
+</ul></li>
+<li>Using RStudio: After downloading R, <a href="https://posit.co/download/rstudio-desktop/">Download RStudio</a>
+<ul>
+<li>Copy and paste directly into the console and press “Enter”.</li>
+<li>Copy and paste into a script page you created, select the part to
+run, then press “Ctrl” + “Enter”.</li>
+</ul></li>
+</ul>
+<p>ja:</p>
+<ul>
+<li>Rを利用：<a href="https://ftp.yz.yamagata-u.ac.jp/pub/cran/">Rをダウンロード</a>
 <ul>
 <li>コンソールに直接コピーアンドペーストして「Enter」（Macの場合は「Return」）</li>
 <li>「ファイル」→「新しいスクリプト」にコピーアンドペーストして，実行する箇所を選択
@@ -1510,8 +1537,10 @@ Rプログラム，薄い灰色で塗りつぶされた箇所）の例</p>
 → 「Ctrl」＋「Enter」</li>
 </ul></li>
 </ul>
-<div id="basic-arithmetic-operations-四則演算" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Basic arithmetic
+<!-- https://cran.ism.ac.jp/ -->
+</div>
+<div id="basic-arithmetic-operations-四則演算" class="section level2" number="2.2">
+<h2><span class="header-section-number">2.2</span> Basic arithmetic
 operations / 四則演算</h2>
 <pre class="r"><code>1 + 1  # addition </code></pre>
 <pre><code>## [1] 2</code></pre>
@@ -1522,9 +1551,11 @@ operations / 四則演算</h2>
 <pre class="r"><code>2 / 3  # division </code></pre>
 <pre><code>## [1] 0.6666667</code></pre>
 </div>
-<div id="comment-out-コメントアウト" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Comment out /
+<div id="comment-out-コメントアウト" class="section level2" number="2.3">
+<h2><span class="header-section-number">2.3</span> Comment out /
 コメントアウト</h2>
+<p>Anything after the <code>#</code> symbol is commented out (i.e., not
+executed). It’s useful for writing notes to yourself.</p>
 <p><code>#</code> 記号から後ろはコメントアウトされる（＝実行されない）．
 自分用のメモを書いておくのに便利．</p>
 <pre class="r"><code>1 + 2 + 10</code></pre>
@@ -1532,8 +1563,8 @@ operations / 四則演算</h2>
 <pre class="r"><code>1 + 2 # + 10</code></pre>
 <pre><code>## [1] 3</code></pre>
 </div>
-<div id="power-square-root-log-exponent-べき乗平方根対数指数" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Power, square root,
+<div id="power-square-root-log-exponent-べき乗平方根対数指数" class="section level2" number="2.4">
+<h2><span class="header-section-number">2.4</span> Power, square root,
 log, exponent / べき乗，平方根，対数，指数</h2>
 <pre class="r"><code>2 ^ 3  # 2 to the power of 3 </code></pre>
 <pre><code>## [1] 8</code></pre>
@@ -1544,58 +1575,85 @@ log, exponent / べき乗，平方根，対数，指数</h2>
 <pre class="r"><code>exp(1)  # exponential, e = Napier&#39;s constant </code></pre>
 <pre><code>## [1] 2.718282</code></pre>
 </div>
-<div id="help-ヘルプ" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Help / ヘルプ</h2>
+<div id="help-ヘルプ" class="section level2" number="2.5">
+<h2><span class="header-section-number">2.5</span> Help / ヘルプ</h2>
+<p>Check the functionality and usage of a function.</p>
 <p>関数の機能や使い方を調べる．</p>
 <pre class="r"><code>?exp
 help(exp)  # same as above</code></pre>
 </div>
-<div id="objects-オブジェクト" class="section level2" number="1.5">
-<h2><span class="header-section-number">1.5</span> Objects /
+<div id="objects-オブジェクト" class="section level2" number="2.6">
+<h2><span class="header-section-number">2.6</span> Objects /
 オブジェクト</h2>
+<p>Users can define any number as an “object.”</p>
+<p>By assigning a number to an “object,” we can use that number
+repeatedly in multiple places.</p>
 <p>ユーザーは任意の数字を適当な「オブジェクト」として定義することができる．
 数値を「オブジェクト」に割り当てることで，数値を複数の箇所で繰り返し使うことができる．</p>
+<p>To assign a value, use the format
+<code>variableName &lt;- value</code>.</p>
+<p>The <code>&lt;-</code> operator is used for assignment and is created
+by combining the <code>&lt;</code> (less than) symbol with the
+<code>-</code> (hyphen).</p>
 <p>「<code>オブジェクト名 &lt;- 数値</code>」の形式で割り当てる．
 「<code>&lt;-</code>」は割り当て（または代入）を行う演算子で，「<code>&lt;</code>」（小なり）と「<code>-</code>」（ハイフン）を組み合わせて使用．</p>
 <pre class="r"><code>x &lt;- 1  # &quot;x&quot; is the object name
 x</code></pre>
 <pre><code>## [1] 1</code></pre>
+<p>Note: Lowercase <code>x</code> and uppercase <code>X</code> are
+treated as different.</p>
 <p>注：小文字 <code>x</code> と大文字 <code>X</code> は区別される．</p>
+<p>We can use this object <code>x</code> in calculations.</p>
 <p>このオブジェクトを計算に使うことができる．</p>
 <pre class="r"><code>x + 2</code></pre>
 <pre><code>## [1] 3</code></pre>
 <pre class="r"><code>x &lt;- 10  # overwrite (override) 
 x + 5</code></pre>
 <pre><code>## [1] 15</code></pre>
+<p>The variable name must start with an alphabet letter.</p>
+<p>For the second character and beyond, we can use numbers or
+underscores.</p>
+<p>However, we cannot use operators or special characters like
+<code>+ - * / ( ) [ ] ! ? &lt; &gt; = | ^ # $ % &amp;</code> etc.</p>
 <p>オブジェクト名はアルファベットではじめる．
 2文字目以降は数字やアンダーバーを使ってよい．
 演算記号など（<code>+ - * / ( ) [ ] ! ? &lt; &gt; = | ^ # $ % &amp;</code>
 etc.）は使用不可．</p>
 <pre class="r"><code>x_3digit &lt;- 500</code></pre>
 </div>
-<div id="vectors-ベクトル" class="section level2" number="1.6">
-<h2><span class="header-section-number">1.6</span> Vectors /
+<div id="vectors-ベクトル" class="section level2" number="2.7">
+<h2><span class="header-section-number">2.7</span> Vectors /
 ベクトル</h2>
+<p>So far, we’ve been considering scalar numbers, but we can also work
+with numeric vectors.</p>
+<p>To create a vector, use the <code>c</code> function, specifying the
+elements of the vector as arguments.</p>
 <p>上ではスカラーの数字を考えていたが，数ベクトル（すうベクトル）を扱うこともできる．
 ベクトルを作成するには <code>c</code>
 関数を使い，ベクトルの要素を引数として指定する．</p>
 <pre class="r"><code>c(1, 2, 6)  # combine values into vector</code></pre>
 <pre><code>## [1] 1 2 6</code></pre>
+<p>Missing values are represented by <code>NA</code>.</p>
 <p>欠損値 (missing value) は <code>NA</code> で表す．</p>
 <pre class="r"><code>c(1, NA, 6)</code></pre>
 <pre><code>## [1]  1 NA  6</code></pre>
+<p>To generate a sequence of consecutive integers, the colon
+<code>:</code> operator is useful.</p>
 <p>連続する整数のベクトルを生成するにはコロン <code>:</code>
 を使うのが便利．</p>
 <pre class="r"><code>1:5</code></pre>
 <pre><code>## [1] 1 2 3 4 5</code></pre>
 <pre class="r"><code>100:105</code></pre>
 <pre><code>## [1] 100 101 102 103 104 105</code></pre>
+<p>To sum all the elements of a vector, we can use the <code>sum</code>
+function.</p>
 <p>ベクトルの要素をすべて足し合わせる．</p>
 <pre class="r"><code>sum(c(1, 2, 6))  # sum of 1, 2, 6 </code></pre>
 <pre><code>## [1] 9</code></pre>
-<div id="assignment-to-objects-オブジェクトへの代入" class="section level3" number="1.6.1">
-<h3><span class="header-section-number">1.6.1</span> Assignment to
+<div id="assignment-to-objects-オブジェクトへの代入" class="section level3" number="2.7.1">
+<h3><span class="header-section-number">2.7.1</span> Assignment to
 objects / オブジェクトへの代入</h3>
+<p>Just like scalars, vectors can also be assigned to variables.</p>
 <p>ベクトルもスカラーと同様にオブジェクトに代入することができる．</p>
 <pre class="r"><code>x &lt;- c(1, 2, 6)  # assign vector to object &quot;x&quot;
 x</code></pre>
@@ -1605,9 +1663,13 @@ x</code></pre>
 <pre class="r"><code>x + 10</code></pre>
 <pre><code>## [1] 11 12 16</code></pre>
 </div>
-<div id="extract-a-portion-of-the-vector-ベクトルの一部を取り出す" class="section level3" number="1.6.2">
-<h3><span class="header-section-number">1.6.2</span> Extract a portion
+<div id="extract-a-portion-of-the-vector-ベクトルの一部を取り出す" class="section level3" number="2.7.2">
+<h3><span class="header-section-number">2.7.2</span> Extract a portion
 of the vector / ベクトルの一部を取り出す</h3>
+<p>To extract specific elements from a vector, we can use functions like
+<code>min</code> (which returns the smallest value in the vector), or we
+can directly specify the position of the element using
+<code>[ ]</code>.</p>
 <p>ベクトルの特定の要素を抽出するには，<code>min</code>
 （ベクトルの要素のうち最小の値を返す関数）のような関数を使ったり，あるいは
 <code>[ ]</code> を使って何番目の要素かを直接指定する方法がある．</p>
@@ -1620,45 +1682,65 @@ of the vector / ベクトルの一部を取り出す</h3>
 <pre class="r"><code>x[c(2, 3)]  # extract 2nd and 3rd values</code></pre>
 <pre><code>## [1] 2 6</code></pre>
 </div>
-<div id="multiple-vectors-複数のベクトル" class="section level3" number="1.6.3">
-<h3><span class="header-section-number">1.6.3</span> Multiple vectors /
+<div id="multiple-vectors-複数のベクトル" class="section level3" number="2.7.3">
+<h3><span class="header-section-number">2.7.3</span> Multiple vectors /
 複数のベクトル</h3>
+<p>We can also perform operations on multiple vectors.</p>
 <p>複数のベクトルに対して演算することもできる．</p>
 <pre class="r"><code>x &lt;- c(1, 2, 6)
 x2 &lt;- c(1, 3, 4)
 x + x2</code></pre>
 <pre><code>## [1]  2  5 10</code></pre>
+<p>The product of a vector and a scalar is calculated as a vector where
+each element is multiplied by the scalar.</p>
 <p>ベクトルとスカラーの積はベクトルの各要素とスカラーの積のベクトルとして計算される．</p>
 <pre class="r"><code>x * 10</code></pre>
 <pre><code>## [1] 10 20 60</code></pre>
 </div>
 </div>
 </div>
-<div id="dataframe-データフレーム" class="section level1" number="2">
-<h1><span class="header-section-number">2</span> Dataframe /
+<div id="dataframe-データフレーム" class="section level1" number="3">
+<h1><span class="header-section-number">3</span> Dataframe /
 データフレーム</h1>
+<p>We can combine vectors to create a data frame consisting of rows and
+columns.</p>
+<p>Note that the elements of the vectors must correspond to each other
+(e.g., the n-th element of the first vector and the n-th element of the
+second vector should represent data for the same person or firm).</p>
 <p>ベクトルを束ねて行と列からなるデータフレームを作成できる．
 ただし，ベクトルの各要素は互いに対応していなければならない（例：1つ目のベクトルのn番目の要素と，2つ目のベクトルのn番目の要素は，同じ人や同じ企業のデータが割り当てられている）．</p>
-<div id="create-data-frames-データフレームを作成する" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> Create data frames /
+<div id="create-data-frames-データフレームを作成する" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Create data frames /
 データフレームを作成する</h2>
+<p>To create a data frame, use the <code>data.frame</code> function,
+specifying the arguments as
+<code>column_name (variable name) = vector_object</code>.</p>
 <p>データフレームを作成するには <code>data.frame</code>
 関数を使い，引数として「<code>列名（変数名） = ベクトルのオブジェクト</code>」を指定する．</p>
 <pre class="r"><code>beatles_name &lt;- c(&quot;John&quot;, &quot;Paul&quot;, &quot;George&quot;, &quot;Ringo&quot;) 
 beatles_born &lt;- c(1940, 1942, 1943, 1940)  # year of birth 
 beatles_decease &lt;- c(1980, NA, NA, NA)  # year of death 
 beatles_height &lt;- c(179, 180, 178, 170)  # in cm 
-beatles &lt;- data.frame(name = beatles_name, born = beatles_born, decease = beatles_decease, 
-                      height = beatles_height)
+beatles &lt;- data.frame(
+  name = beatles_name, 
+  born = beatles_born, 
+  decease = beatles_decease, 
+  height = beatles_height
+  )
 beatles</code></pre>
 <pre><code>##     name born decease height
 ## 1   John 1940    1980    179
 ## 2   Paul 1942      NA    180
 ## 3 George 1943      NA    178
 ## 4  Ringo 1940      NA    170</code></pre>
+<p>We can also create it in the following way.</p>
 <p>以下のように作成することもできる．</p>
-<pre class="r"><code>beatles2 &lt;- data.frame(name = c(&quot;John&quot;, &quot;Paul&quot;, &quot;George&quot;, &quot;Ringo&quot;), born = c(1940, 1942, 1943, 1940),
-                       decease = c(1980, NA, NA, NA), height = c(179, 180, 178, 170))
+<pre class="r"><code>beatles2 &lt;- data.frame(
+  name = c(&quot;John&quot;, &quot;Paul&quot;, &quot;George&quot;, &quot;Ringo&quot;), 
+  born = c(1940, 1942, 1943, 1940),
+  decease = c(1980, NA, NA, NA), 
+  height = c(179, 180, 178, 170)
+  )
 beatles2</code></pre>
 <pre><code>##     name born decease height
 ## 1   John 1940    1980    179
@@ -1666,9 +1748,13 @@ beatles2</code></pre>
 ## 3 George 1943      NA    178
 ## 4  Ringo 1940      NA    170</code></pre>
 </div>
-<div id="extract-a-portion-of-the-data-frame-データフレームの一部を取り出す" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> Extract a portion of
+<div id="extract-a-portion-of-the-data-frame-データフレームの一部を取り出す" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Extract a portion of
 the data frame / データフレームの一部を取り出す</h2>
+<p>To extract specific elements from a data frame, we can use
+<code>[ ]</code> to specify the row and column numbers, or use the
+<code>$</code> symbol to specify the column name (variable name) in the
+format <code>data_frame_name$column_name</code>.</p>
 <p>データフレームの特定の要素を抽出するには， <code>[ ]</code>
 を使って何行目・何列目かを指定したり，あるいは「<code>データフレーム名$列名</code>」のように
 <code>$</code> （ドル）記号を使って列名（変数名）を指定する．</p>
@@ -1692,9 +1778,11 @@ the data frame / データフレームの一部を取り出す</h2>
 <pre class="r"><code>beatles$born  # column named &quot;born&quot; (year of birth)</code></pre>
 <pre><code>## [1] 1940 1942 1943 1940</code></pre>
 </div>
-<div id="change-the-value-of-the-data-frame-データフレームの値を変更する" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> Change the value of
+<div id="change-the-value-of-the-data-frame-データフレームの値を変更する" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Change the value of
 the data frame / データフレームの値を変更する</h2>
+<p>Just like when modifying the value of scalar or vector objects, we
+can overwrite the values using <code>&lt;-</code>.</p>
 <p>スカラーやベクトルのオブジェクトの値を変更する場合と同様に
 <code>&lt;-</code> で上書きできる．</p>
 <pre class="r"><code>beatles[3, &quot;decease&quot;] &lt;- 2001  # George 
@@ -1705,9 +1793,11 @@ beatles</code></pre>
 ## 3 George 1943    2001    178
 ## 4  Ringo 1940      NA    170</code></pre>
 </div>
-<div id="create-new-variable-column-新しい変数列を追加する" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> Create new variable
+<div id="create-new-variable-column-新しい変数列を追加する" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> Create new variable
 (column) / 新しい変数（列）を追加する</h2>
+<p>We can add a new variable to a dataset by using the format
+<code>dataset$new_variable_name &lt;- contents_of_new_variable (such as a vector)</code>.</p>
 <p>「<code>データセット$新しい変数の名前 &lt;- 新しい変数の中身（ベクトルなど）</code>」
 のようにして追加できる．</p>
 <pre class="r"><code>beatles$primary_role &lt;- c(&quot;vocal&quot;, &quot;vocal&quot;, &quot;guitar&quot;, &quot;drum&quot;)
@@ -1719,66 +1809,92 @@ beatles</code></pre>
 ## 4  Ringo 1940      NA    170         drum</code></pre>
 </div>
 </div>
-<div id="loading-csv-file-csvファイルを読み込む" class="section level1" number="3">
-<h1><span class="header-section-number">3</span> Loading CSV file /
+<div id="loading-csv-file-csvファイルを読み込む" class="section level1" number="4">
+<h1><span class="header-section-number">4</span> Loading CSV file /
 CSVファイルを読み込む</h1>
+<p>As an example, let’s load the Titanic passenger data from the file
+<code>titanic3_csv.csv</code>.</p>
 <p>例としてタイタニック号の乗客データ <code>titanic3_csv.csv</code>
 を読み込む．</p>
 <p>元データは <a href="http://biostat.mc.vanderbilt.edu/DataSets" class="uri">http://biostat.mc.vanderbilt.edu/DataSets</a>
 （既にリンク切れ）から取得したもので，名前などの一部変数を除外している．</p>
 <p>参照：<a href="https://atmarkit.itmedia.co.jp/ait/articles/2007/02/news016.html">Titanic：タイタニック号乗客者の生存状況（年齢や性別などの13項目）の表形式データセット</a></p>
 <ul>
-<li><code>pclass</code>： 旅客クラス</li>
+<li><code>pclass</code>： Ticket Class / 旅客クラス</li>
 <li><code>survived</code>: = 1 if survived, = 0 if not survived</li>
 <li><code>sex</code>: female or male</li>
-<li><code>age</code>: 年齢</li>
-<li><code>sibsp</code>：
-同船する兄弟（siblings）と配偶者（spouses）の数</li>
-<li><code>parch</code>：
-同船する親（parents）と子供（children）の数</li>
-<li><code>embarked</code>： 出港地（C＝Cherbourg（仏・シェルブール）,
-Q＝Queenstown, S＝Southampton）</li>
+<li><code>age</code>: age / 年齢</li>
+<li><code>sibsp</code>： the number of siblings/spouses /
+同船する兄弟と配偶者の数</li>
+<li><code>parch</code>： the number of parents/children /
+同船する親と子供の数</li>
+<li><code>embarked</code>： port of embarkation / 出港地
+<ul>
+<li>C＝Cherbourg（仏・シェルブール）, Q＝Queenstown, S＝Southampton</li>
+</ul></li>
 </ul>
-<div id="read.csv" class="section level2" number="3.1">
-<h2><span class="header-section-number">3.1</span>
+<div id="read.csv" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span>
 <code>read.csv</code></h2>
-<p>Step 1. 授業の Moodle ページまたは <a href="https://github.com/kurodaecon/bs/blob/main/data/titanic3_csv.csv">GitHub</a>
+<p>Step 1.</p>
+<p>Download the CSV file from the Moodle page of the class or from <a href="https://github.com/kurodaecon/bs/blob/main/data/titanic3_csv.csv">GitHub</a>
+and save it in an appropriate folder, such as the “ws_stat” (workspace
+for statistics) folder directly under the C drive.</p>
+<p>授業の Moodle ページまたは <a href="https://github.com/kurodaecon/bs/blob/main/data/titanic3_csv.csv">GitHub</a>
 から CSV ファイルをダウンロードして適当なフォルダに保存する．
 たとえばCドライブ直下の「ws_stat」(workspace for statistics)
 フォルダに保存する．</p>
-<p>Step 2. <code>setwd</code>
+<p>Step 2.</p>
+<p>Use the <code>setwd</code> function to specify the folder where you
+saved the file as the working directory. We can check the specified
+working directory with the <code>getwd</code> function (leave the
+parentheses empty).</p>
+<p><code>setwd</code>
 関数を使って保存したフォルダを作業ディレクトリとして指定する．
 <code>getwd</code>
 関数で指定された作業ディレクトリを確認できる（カッコの中には何も書かない）．</p>
-<p>Step 3. <code>read.csv</code>
+<p>Step 3.</p>
+<p>Use the <code>read.csv</code> function, specifying the file name as
+an argument, to load the file.</p>
+<p><code>read.csv</code>
 関数でファイル名を引数として指定して読み込む．</p>
 <pre class="r"><code>setwd(&quot;c://ws_stat&quot;)  # set working directory
 getwd()  # get working directory</code></pre>
 <pre><code>## [1] &quot;c:/ws_stat&quot;</code></pre>
 <pre class="r"><code>titanic &lt;- read.csv(&quot;titanic3_csv.csv&quot;)</code></pre>
+<p>Note: When running an .rmd file chunk by chunk, the working directory
+may reset after each chunk is executed.</p>
 <p>注：.rmd
 ファイルを開いてチャンクごとに実行する場合，チャンクの実行が終わると作業ディレクトリがリセットされる．</p>
+<p>If the file contains Japanese (or Chinese, Korean, or any other
+non-alphabet) characters, it might cause errors, so it’s recommended for
+beginners to create and use files without including Japanese
+characters.</p>
 <p>ファイルに日本語が含まれるとエラーが出る場合があるので，初心者のうちは日本語を含めずにファイルを作成・使用するのがおすすめ．</p>
 </div>
-<div id="read.csv-file.choose" class="section level2" number="3.2">
-<h2><span class="header-section-number">3.2</span> <code>read.csv</code>
+<div id="read.csv-file.choose" class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> <code>read.csv</code>
 + <code>file.choose</code></h2>
-<p>作業ディレクトリの設定がうまくできない場合は，次の行を実行してCSVファイルを読み込む．実行すると「ファイルを選択」画面が出てきて，そこから読み込むCSVファイルを選択することができる．
-<!--
-If the working directory settings do not work, execute the following line to load the CSV file. The "Select File" screen will appear, from which you can select the CSV file to be read.
---></p>
+<p>If the working directory settings do not work, execute the following
+line to load the CSV file. The “Select File” screen will appear, from
+which you can select the CSV file to be read.</p>
+<p>作業ディレクトリの設定がうまくできない場合は，次の行を実行してCSVファイルを読み込む．実行すると「ファイルを選択」画面が出てきて，そこから読み込むCSVファイルを選択することができる．</p>
 <pre class="r"><code>titanic &lt;- read.csv(file.choose())</code></pre>
 </div>
-<div id="read.csv-external-url-link" class="section level2" number="3.3">
-<h2><span class="header-section-number">3.3</span> <code>read.csv</code>
+<div id="read.csv-external-url-link" class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> <code>read.csv</code>
 + external URL link</h2>
+<p>We can also directly read CSV or TXT files from the web.</p>
 <p>ウェブ上の CSV ファイルや TXT
 ファイルを直接読み込むこともできる．</p>
 <pre class="r"><code>titanic &lt;- read.csv(&quot;https://raw.githubusercontent.com/kurodaecon/bs/main/data/titanic3_csv.csv&quot;)</code></pre>
 </div>
-<div id="data-overview-データの概観" class="section level2" number="3.4">
-<h2><span class="header-section-number">3.4</span> Data overview /
+<div id="data-overview-データの概観" class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Data overview /
 データの概観</h2>
+<p>We can use the <code>str</code> function mentioned earlier to check
+the structure of the data frame, and the <code>head</code> function to
+display the first few rows (the default is 6 rows).</p>
 <p>先ほど取り上げた <code>str</code>
 関数を利用してデータフレームの構造を確認したり，<code>head</code>
 関数を利用して最初の数行（デフォルトは6行）のみを表示させる．</p>
@@ -1800,43 +1916,69 @@ If the working directory settings do not work, execute the following line to loa
 ## 4      1        0   male 30.00     1     2 151.5500        S
 ## 5      1        0 female 25.00     1     2 151.5500        S
 ## 6      1        1   male 48.00     0     0  26.5500        S</code></pre>
+<p>Using the <code>View</code> function opens a window that displays the
+entire dataset.</p>
 <p><code>View</code>
 関数を使うとデータセット全体を表示するウィンドウが表示される．</p>
 <pre class="r"><code>View(titanic)</code></pre>
 </div>
-<div id="output-file-ファイルを出力" class="section level2" number="3.5">
-<h2><span class="header-section-number">3.5</span> Output file /
+<div id="output-file-ファイルを出力" class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Output file /
 ファイルを出力</h2>
+<p>We can export datasets or other processed data in R to a file format
+such as CSV.</p>
 <p>Rで加工したデータセットなどを CSV
 などのファイル形式で出力することができる．</p>
-<div id="case-1.-既に作業ディレクトリを指定している場合" class="section level3" number="3.5.1">
-<h3><span class="header-section-number">3.5.1</span> Case 1.
-既に作業ディレクトリを指定している場合</h3>
-<p>先ほど <code>setwd</code>
+<div id="case-1.-if-the-working-directory-has-already-been-specified" class="section level3" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Case 1. If the
+working directory has already been specified</h3>
+<p>The file will be exported to the working directory that was
+previously set using <code>setwd</code>.</p>
+<p>既に作業ディレクトリを指定している場合には，先ほど <code>setwd</code>
 で指定した作業ディレクトリに出力される．</p>
 <pre class="r"><code>titanic_head &lt;- head(titanic)
 write.csv(titanic_head, &quot;titanic_first_6_rows.csv&quot;)</code></pre>
 </div>
-<div id="case-2.-作業ディレクトリを指定していない場合" class="section level3" number="3.5.2">
-<h3><span class="header-section-number">3.5.2</span> Case 2.
-作業ディレクトリを指定していない場合</h3>
-<p>Case 1
+<div id="case-2.-if-the-working-directory-has-not-been-specified" class="section level3" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Case 2. If the
+working directory has not been specified</h3>
+<p>When we run the code from Case 1, the file will be exported to the
+default working directory. As mentioned earlier, we can check the
+default directory using <code>getwd()</code>.</p>
+<p>作業ディレクトリを指定していない場合には，Case 1
 のコードを実行するとデフォルトで指定されている作業ディレクトリに出力される．
 デフォルトのディレクトリは先述のとおり <code>getwd()</code>
 で確認できる．</p>
 </div>
-<div id="case-3.-指定した作業ディレクトリとは別のフォルダに保存する場合" class="section level3" number="3.5.3">
-<h3><span class="header-section-number">3.5.3</span> Case 3.
-指定した作業ディレクトリとは別のフォルダに保存する場合</h3>
-<p>先に保存先フォルダを作成する（例：ws_stat 直下の new_dir
-フォルダ）．</p>
+<div id="case-3.-if-you-want-to-save-the-file-in-a-folder-different-from-the-specified-working-directory" class="section level3" number="4.5.3">
+<h3><span class="header-section-number">4.5.3</span> Case 3. If you want
+to save the file in a folder different from the specified working
+directory</h3>
+<p>First, create the destination folder (e.g., a new_dir folder directly
+under ws_stat).</p>
+<p>指定した作業ディレクトリとは別のフォルダに保存する場合には，先に保存先フォルダを作成する（例：ws_stat
+直下の new_dir フォルダ）．</p>
 <pre class="r"><code>titanic_head &lt;- head(titanic)
 write.csv(titanic_head, &quot;c://ws_stat/new_dir/titanic_first_6_rows.csv&quot;)</code></pre>
 </div>
 </div>
 </div>
-<div id="take-home-messages" class="section level1" number="4">
-<h1><span class="header-section-number">4</span> Take home messages</h1>
+<div id="take-home-messages" class="section level1" number="5">
+<h1><span class="header-section-number">5</span> Take home messages</h1>
+<p>en:</p>
+<ul>
+<li>If you’re unsure about something, check the help:
+<ul>
+<li>Use <code>?function_name</code> or
+<code>help(function_name)</code></li>
+<li>If that doesn’t help, try searching on Google, asking ChatGPT, or
+looking on YouTube, etc.</li>
+</ul></li>
+<li>To assign a value to an object:
+<code>object_name &lt;- content (scalar, vector, data frame, etc.)</code></li>
+<li>To read a CSV file: <code>read.csv(&quot;file_name&quot;)</code></li>
+</ul>
+<p>ja:</p>
 <ul>
 <li>分からないことがあればヘルプを見る
 <ul>
@@ -1848,7 +1990,6 @@ write.csv(titanic_head, &quot;c://ws_stat/new_dir/titanic_first_6_rows.csv&quot;
 <code>オブジェクト名 &lt;- 中身（スカラー or ベクトル or データフレーム etc.）</code></li>
 <li>CSV ファイルの読み込みは <code>read.csv(&quot;ファイル名&quot;)</code></li>
 </ul>
-<p>.</p>
 </div>
 
 

@@ -1,0 +1,142 @@
+---
+title: "Basic Statistics: Regression Analysis"
+author: "Sho Kuroda / 黒田翔"
+date: 'April 2024 (Last update: August 2024)'
+output:
+  html_document:
+    toc: yes
+    toc_float: yes
+    number_sections: yes
+  pdf_document:
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# Simple regression analysis / 単回帰分析
+
+We'll estimate the following regression model (simple linear regression) with a single explanatory variable using the `swiss` dataset. 
+
+`swiss` データを使って，1つの説明変数をもつ次のような回帰モデル（単回帰モデル）を推定する．
+
+$$ Fertility = \alpha + \beta Exam + u $$
+
+## Estimation and interpretation 
+
+Estimate using the `lm` (linear model) function. 
+
+`lm` (linear model) 関数で推定する．
+
+```{r reg_lm}
+# str(swiss)  # built-in dataset
+lm(formula = Fertility ~ Examination, data = swiss)
+```
+
+From the results above, it can be interpreted as follows: When the value of the `Examination` variable increases by one unit, the `Fertility` variable tends to be 1.011 units lower on average. 
+
+上の結果から次のように解釈することができる：「`Examination` 変数が1単位大きい値を取るとき，`Fertility` 変数は平均的に 1.011 単位小さな値を取る」
+
+It _cannot_ be interpreted as: A one-unit increase in `Examination` _reduces_ `Fertility` by 1.011 units. 
+
+This is because the phrase 'reduces' implies a causal relationship, whereas the analysis above is merely measuring correlation, not causation. 
+
+次のように解釈することはできない：「`Examination` の1単位の増加は `Fertility` を 1.011 単位減少させる」
+
+なぜならば，「減少させる」という表現は通常因果関係を意味するが，上の分析では因果関係ではなく相関関係を測定しているにすぎないからである．
+
+
+## `summary` function 
+
+`summary` function display the R-squared and other statistics. 
+
+`lm` 関数で計算した回帰オブジェクトを `summary` 関数に渡すと決定係数なども表示される．
+
+```{r reg_summary}
+summary(lm(formula = Fertility ~ Examination, data = swiss))
+```
+
+
+# Multiple regression analysis / 重回帰分析
+
+Let's consider the following regression model (multiple regression model) with two explanatory variables. 
+
+2つの説明変数をもつ次のような回帰モデル（重回帰モデル）を考える．
+
+$$ Fertility = \alpha + \beta_1 Exam + \beta_2 Educ + u $$
+
+```{r multiple_reg_lm}
+summary(lm(Fertility ~ Examination + Education, data = swiss))
+```
+
+From the results above, it can be interpreted as follows: Given that `Education` is held at a certain level, when `Examination` increases by one unit, `Fertility` tends to be 0.5572 units lower on average. 
+
+上の結果から次のように解釈できる：`Education` を一定水準に固定したもとで `Examination` が1単位大きい値を取るとき，`Fertility` は平均的に 0.5572 小さな値を取る傾向にある．
+
+# Advanced / 応用
+
+## Adding quardatic or interaction terms / 二次・交差項
+
+When specifying a regression model, we can use the `I` function to represent squares and interaction terms. 
+
+The notation `var1 : var2` represents var1 × var2, while `var1 * var2` represents var1 + var2 + (var1 × var2). 
+
+回帰モデルを指定する際に `I` 関数を使って二乗や交差項を表現する．
+
+「`var1 : var2`」は「`var1 × var2`」を表し，「`var1 * var2`」は「`var1 + var2 + (var1 × var2)`」を表す．
+
+$$ Fertility = \alpha + \beta_1 Exam + \beta_2 Educ^2 + u $$
+
+```{r reg_quad}
+lm(Fertility ~ Examination + I(Education^2), data = swiss)
+```
+
+$$ Fertility = \alpha + \beta_1 Exam \times Educ + u $$
+
+```{reg_interaction}
+lm(Fertility ~ Examination:Education, data = swiss)
+```
+
+$$ Fertility = \alpha + \beta_1 Exam + \beta_2 Educ + \beta_3 Exam \times Educ + u $$
+
+```{r reg_interaction_full}
+lm(Fertility ~ Examination*Education, data = swiss)
+```
+
+We can use `log` without `I` when taking the logarithm of either the explanatory variables or the dependent variable. 
+
+説明変数や被説明変数に対数を取る場合は `I` なしで `log` を使ってよい．
+
+$$ \log(Fertility) = \alpha + \beta_1 Exam + u $$
+
+```{r reg_log}
+lm(log(Fertility) ~ Examination, data = swiss)
+```
+
+## Dummy variables / ダミー変数
+
+Let's define a dummy variable, `exam_dummy`, that takes the value 1 when the `Examination` variable is greater than the average (approximately 16). 
+
+Use the `ifelse(logical expression, value if TRUE, value if FALSE)` function to create a variable that returns 1 if the logical expression is `TRUE`. 
+
+`Examination` 変数が平均（≒ 16）よりも大きい場合に 1 をとるダミー変数を定義してみる．
+
+`ifelse(論理演算, TRUE の場合, FALSE の場合)` を利用し，論理演算部分が `TRUE` なら 1 を返すように変数を作成する．
+
+```{r reg_dummy_mutate}
+swiss$exam_dummy <- ifelse(swiss$Examination > 16, 1, 0)
+head(swiss[, c("Examination", "exam_dummy")])
+```
+
+$$ Fertility = \alpha + \beta_1 1(Exam > 16) + u $$
+
+```{r reg_dummy}
+summary(lm(Fertility ~ exam_dummy, data = swiss))
+```
+
+It can be observed that in regions where `Examination` exceeds 16, `Fertility` tends to be, on average, 13.904 units lower compared to regions where Examination does not exceed 16. 
+
+`Examination` が16を超えている地域では超えていない地域と比較して `Fertility` が平均的に 13.904 単位低い値を取る傾向にあることが分かる．
+
